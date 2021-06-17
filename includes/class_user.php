@@ -33,4 +33,23 @@ class Usuario extends Conexion{
         return "Registro exitoso";
     }
 
+    function listar_usuarios(){
+        $p_consulta = "SELECT * FROM tb_usuario";
+        $consulta = $this->conexion->query($p_consulta);
+        $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+
+    // FETCH_ASSOC devolver la info como un array asociativo RECOMENDADO
+    // FETCH_NUM devuelve la info como un array numerico
+    // FETCH_OBJ devuelve la info como un objeto
+    // FETCH_BOTH devolver un array asociativo y numerico
+    function listar_usuarios_id($id){
+        $g_consulta = "SELECT * FROM tb_usuario WHERE id_usuario = ?";
+        $consulta = $this->conexion->prepare($g_consulta);
+        $data_user = array($id);
+        $consulta ->execute($data_user);
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
+    }
 }
