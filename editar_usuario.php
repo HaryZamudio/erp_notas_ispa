@@ -1,3 +1,9 @@
+<?php
+require_once "includes/class_user.php";
+$usuario= new Usuario();
+
+$data_user = $usuario->listar_usuarios_id($_GET['idUser']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,20 +15,18 @@
 </head>
 <body>
   <div class="container">
-    <form method="POST" action="procesos/form_registro_user.php">
+    <form method="POST" action="procesos/form_update_user.php">
         <div class="form-group">
             <label for="exampleInputEmail1">Nombres</label>
-            <input type="text" class="form-control" name="nombre_user" id="nombre_user" >
+            <input type="text" class="form-control" name="nombre_user" id="nombre_user" value="<?php echo $data_user['nombre']?>">
             <label for="exampleInputEmail1">Apellidos</label>
-            <input type="text" class="form-control" name="apellidos_user"id="apellidos_user" >
+            <input type="text" class="form-control" name="apellidos_user"id="apellidos_user" value="<?php echo $data_user['apellido']?>">
             <label for="exampleInputEmail1">Correo</label>
-            <input type="text" class="form-control" name="correo_user" id="correo_user" >
+            <input type="text" class="form-control" name="correo_user" id="correo_user" value="<?php echo $data_user['correo']?>">
+            <input type="hidden" name="id_user" value="<?php echo $_GET['idUser'] ?>">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" name="pass_user" id="pass_user">
-        </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+
+        <button type="submit" class="btn btn-primary">Actualizar Datos</button>
     </form>
   </div>
 

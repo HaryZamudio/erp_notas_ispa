@@ -44,6 +44,7 @@ class Usuario extends Conexion{
     // FETCH_NUM devuelve la info como un array numerico
     // FETCH_OBJ devuelve la info como un objeto
     // FETCH_BOTH devolver un array asociativo y numerico
+    
     function listar_usuarios_id($id){
         $g_consulta = "SELECT * FROM tb_usuario WHERE id_usuario = ?";
         $consulta = $this->conexion->prepare($g_consulta);
@@ -51,5 +52,21 @@ class Usuario extends Conexion{
         $consulta ->execute($data_user);
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
         return $resultado;
+    }
+
+    function actualiza_usuario($id,$nombre,$apellido,$correo){
+        $this->nombre=$nombre;
+        $this->apellido=$apellido;
+        $this->correo=$correo;
+
+        $query_update ="UPDATE tb_usuario SET nombre=?, apellido=?,correo=? WHERE id_usuario=$id";
+        $update= $this->conexion->prepare($query_update);
+        $array_update=array(
+            $this->nombre,
+            $this->apellido,
+            $this->correo,
+        );
+        $respuesta=$update->execute($array_update);
+        return $respuesta;
     }
 }

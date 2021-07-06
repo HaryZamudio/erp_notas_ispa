@@ -23,6 +23,7 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Nickname</th>
+                <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,10 @@
                     <td><?php echo $lista[$x]['apellido'] ?></td>
                     <td><?php echo $lista[$x]['correo'] ?></td>
                     <td><?php echo $lista[$x]['nickname'] ?></td>
+                    <td>
+                    <a href="editar_usuario.php?idUser=<?php echo $lista[$x]['id_usuario']?>">
+                    <button class="btn btn-danger">EDITAR</button>
+                    </a></td>
                 </tr>
                 <?php
             }    
